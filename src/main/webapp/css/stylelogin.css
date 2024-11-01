@@ -1,0 +1,123 @@
+/*globales*/
+* {
+    margin: auto;
+    height: auto;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente de GitHub */
+}
+
+/*cuerpo de la pagina*/
+body {
+    background-image: radial-gradient(circle, #f0f0d8 18%, #e5e3d2 76%);
+    min-height: 100vh;
+    align-content: center;
+}
+
+/*seccion formulario*/
+.formulario {
+    margin: auto;
+    width: 300px;
+    height: auto;
+    background: #b4debe;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 20px;
+    border: solid 2px;
+    color: #77cca4;
+    box-shadow: 7px 13px 37px #666;
+    border-color: #666666;
+}
+
+/* Estilos para campos de entrada invalidos */
+input:invalid {
+    border: 2px solid red;
+}
+
+/* Estilos para campos de entrada validos */
+input:valid {
+    border: 2px solid green;
+}
+
+/*header del formulario*/
+.formulario h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente de GitHub */
+    font-weight: 900;
+}
+
+/*primer input*/
+#numeroDocumento , #password {
+    width: 100%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 50px;
+    border-style: dashed;
+    margin-bottom: 16px;
+    border: 6px;
+    font-size: 11px;
+    color: gray;
+    text-align: center;
+}
+
+/*enlace forgot password*/
+.formulario a {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente de GitHub */
+}
+
+label {
+    display: none;
+}
+
+.formulario a {
+    color: #7B00FA;
+}
+
+/*propiedad visual del enlace forgot password cambio de color*/
+.formulario a:hover {
+    color: yellow;
+}
+
+/*boton login*/
+.boton {
+    display: block;
+    padding: 7px 50px;
+    background: #60A878;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 20px;
+    color: aliceblue;
+}
+
+/*propiedades visuales del boton*/
+.boton:hover {
+    background-color: #f0f0d8;
+}
+
+/*propiedad del texto fuera de formulario*/
+#texto {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #7B00FA;
+}
+
+/*propiedad de enlace del texto fuera de formulario*/
+#texto a {
+    color: #7B00FA; 
+    text-decoration: none;  
+}
+
+/*propiedades visuales del enlace de texto fuera de formulario*/
+#texto a:hover {
+    color: #ffffff; 
+}

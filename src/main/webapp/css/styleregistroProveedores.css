@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; 
+    width: 100%; 
+    overflow-x: hidden; 
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(217, 255, 220, 1);
+    text-align: center;
+    border-radius: 5px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 140px;
+    background-color: rgba(118, 204, 164, 1);
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    margin-bottom: auto;
+}
+
+.logo img {
+    margin-top: 30px;
+    width: 80px;
+    height: 70px;
+    border-radius: 30%;
+    background-color: rgba(118, 204, 164, 1);
+}
+
+.sidebar h1 {
+    color: white;
+    background-color: rgba(118, 204, 164, 1);
+    margin: 0;
+}
+
+.sidebar a {
+    color: rgba(118, 204, 164, 1);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    display: block;
+    background-color: rgba(217, 255, 220, 1);
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.sidebar a:hover {
+    background-color: rgba(118, 204, 164, 1);
+    color: white;
+}
+
+.sidebar .cerrar-sesion a {
+    color: pink;
+    display: block;
+    margin-top: auto;
+}
+
+.modulo {
+    margin-top: auto;
+}
+
+.contenido {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.anuncios {
+    width: 100%;
+    height: 50px;
+    background-color: aquamarine;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+}
+
+.contenido h2 {
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formulario form {
+    width: 60%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+.formulario input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    text-align: center; 
+}
+
+
+.btn.Crear {
+    background-color: #4CAF50; /* verde */
+    color: white;
+}
+.btn.Limpiar{
+    background-color: #B5B3B3; /* azul*/
+    color: white;
+}
+
+.btn.Regresar {
+    background-color: #2291F2; /* azul */
+    color: white;
+}
+
+.btn.Guardar{
+    background-color: #4CAF50; /* verde */
+    color: white;
+}
+
+@media(max-width: 768px){
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+
+}

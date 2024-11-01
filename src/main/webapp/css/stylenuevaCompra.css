@@ -1,0 +1,272 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+    width: 100%; /* Asegura que el body ocupe todo el ancho de la pantalla */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(217, 255, 220, 1);
+    text-align: center;
+    border-radius: 5px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 140px;
+    background-color: rgba(118, 204, 164, 1);
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    margin-bottom: auto;
+}
+
+.logo img {
+    margin-top: 30px ;
+    width: 80px;
+    height: 70px;
+    border-radius: 30%;
+    background-color: rgba(118, 204, 164, 1);
+}
+
+.sidebar h1 {
+    color: white;
+    background-color: rgba(118, 204, 164, 1);
+    margin: 0;
+}
+
+.sidebar a {
+    color: rgba(118, 204, 164, 1);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    display: block;
+    background-color: rgba(217, 255, 220, 1);
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.sidebar a:hover {
+    background-color: rgba(118, 204, 164, 1);
+    color: white;
+}
+
+.sidebar .cerrar-sesion a {
+    color: pink;
+    display: block;
+    margin-top: auto;
+}
+
+.modulo{
+    margin-top: auto;
+}
+
+.contenido  {
+    margin-left: 200px;
+    padding: 20px;
+    
+}
+.anuncios{
+    width: 100%;
+    height:50px;
+    background-color: aquamarine;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+}
+
+
+.contenido h2 {
+    text-size-adjust: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.contenedor {
+    width:auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contenedor h2{
+    margin-left: 10px;
+    margin-bottom: 30px;
+    padding: 1px;
+}
+
+.secciones {
+    flex:1;
+    min-width: 250px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+    width: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.lista-productos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-productos th, .lista-productos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.lista-productos th {
+    background-color: #f2f2f2;
+}
+
+.lista-productos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.lista-productos tr:hover {
+    background-color: #ddd;
+}
+
+.add-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+.productos-seleccionados {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.carritoCompras {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.carritoCompras th, .carritoCompras td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.carritoCompras th {
+    background-color: #f2f2f2;
+}
+
+.carritoCompras tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.carritoCompras tr:hover {
+    background-color: #ddd;
+}
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 2px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.generar-compra {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.cancelar-compra {
+    background-color: #F44336;
+    color: white;
+}
+.btn.Borrar {
+    background-color: #F44336;
+    color: white;
+}
+
+.btn.Añadir {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn.Buscar {
+    background: #3498db;
+    color: white;
+}
+
+@media(max-width: 768px){
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+
+}

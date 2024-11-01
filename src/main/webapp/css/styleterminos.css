@@ -1,0 +1,32 @@
+body {
+    font-family: 'Arial', Times, serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.documento {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    padding: 40px;
+    margin: 20px 0;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: left;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+ul {
+    margin-left: 20px;
+}

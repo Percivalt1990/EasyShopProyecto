@@ -1,0 +1,189 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* esto asegura que el body tenga al menos la altura de la ventana */
+    width: 100%; /* aqui se asegura que el body ocupe todo el ancho de la pantalla */
+    overflow-x: hidden; /* esto evita el desplazamiento horizontal */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(217, 255, 220, 1);
+    text-align: center;
+    border-radius: 5px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 140px;
+    background-color: rgba(118, 204, 164, 1);
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    margin-bottom: auto;
+}
+
+.logo img {
+    margin-top: 30px;
+    width: 80px;
+    height: 70px;
+    border-radius: 30%;
+    background-color: rgba(118, 204, 164, 1);
+}
+
+.sidebar h1 {
+    color: white;
+    background-color: rgba(118, 204, 164, 1);
+    margin: 0;
+}
+
+.sidebar a {
+    color: rgba(118, 204, 164, 1);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    display: block;
+    background-color: rgba(217, 255, 220, 1);
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.sidebar a:hover {
+    background-color: rgba(118, 204, 164, 1);
+    color: white;
+}
+
+.sidebar .cerrar-sesion a {
+    color: pink;
+    display: block;
+    margin-top: auto;
+}
+
+.modulo{
+    margin-top: auto;
+}
+
+.contenido  {
+    margin-left: 200px;
+    padding: 20px;
+    
+}
+.anuncios {
+    width: 100%;
+    height:50px;
+    background-color: aquamarine;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+}
+
+.contenido h2 {
+    text-size-adjust: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.search-input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 250px;
+    margin-right: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+}
+.btn.crear {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+.btn.Modificar {
+    background-color: #2291F2; /* Azul*/
+    color: white;
+}
+.btn.Borrar {
+    background-color: #F44336; /* Rojo */
+    color: white;
+}
+
+.btn.Buscar {
+    background: #3498db;
+    color: white;
+}
+
+table {
+    width: 100%;
+    max-width: 1600px;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.contenido p{
+    color: aqua;
+    padding: 145px 205px;margin-left: 250px;
+}
+
+
+@media(max-width: 768px){
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 130px; /* Reduce el ancho de la sidebar en pantallas móviles */
+    }
+
+    .header {
+        width: 115px; /* Ajusta el ancho de la cabecera en pantallas pequeñas */
+    }
+
+    .sidebar a {
+        font-size: 0.8rem;
+        padding: 8px; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .contenido {
+        margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
+    }
+}

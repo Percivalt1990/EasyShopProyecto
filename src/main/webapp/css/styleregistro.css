@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+body {
+    background-image: radial-gradient(circle, #77CCA4 18%, #77CCB2 76%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+.container {
+    width: 400px;
+    padding: 30px;
+    background: #F0F0D8;
+    border-radius: 20px;
+    box-shadow: 7px 13px 37px #666;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+input {
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+    margin: 10px 0;
+    border-radius: 20px;
+    font-size: 14px; /* Ajuste del tamaño de fuente */
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+input::placeholder {
+    color: #aaa; /* Color más claro para los placeholders */
+}
+
+input:valid {
+    border: 2px solid green;
+}
+
+.header-form h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #B4DF37;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    color: #7B00FA;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+.checkbox input[type="checkbox"] {
+    width: 16px; /* Tamaño estándar del checkbox */
+    height: 16px; /* Tamaño estándar del checkbox */
+    margin-right: 10px; /* Espacio entre el checkbox y la etiqueta */
+    cursor: pointer; /* Cursor tipo puntero para el checkbox */
+}
+
+.checkbox label {
+    font-size: 14px; /* Tamaño de fuente más pequeño para el label del checkbox */
+    cursor: pointer; /* Cursor tipo puntero para la etiqueta */
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 7px;
+    font-size: 15px;
+    background: #60BF81;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+}
+
+button:active {
+    background: #67db7e;
+}
