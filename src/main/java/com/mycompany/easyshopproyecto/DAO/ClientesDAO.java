@@ -109,4 +109,30 @@ public class ClientesDAO {
         }
         return null;
     }
+
+    // Método para buscar clientes por nombre o número de documento
+    public List<Clientes> buscarClientes(String search) {
+        List<Clientes> clientes = new ArrayList<>();
+        String sql = "SELECT * FROM clientes WHERE nombre LIKE ? OR documento LIKE ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "%" + search + "%");
+            ps.setString(2, "%" + search + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Clientes cliente = new Clientes(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("documento"),
+                        rs.getString("tipo_documento"),
+                        rs.getString("telefono"),
+                        rs.getString("direccion"),
+                        rs.getString("email")
+                );
+                clientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clientes;
+    }
 }

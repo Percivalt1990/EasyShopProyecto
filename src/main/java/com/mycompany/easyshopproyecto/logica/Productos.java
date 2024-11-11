@@ -1,11 +1,9 @@
-
 package com.mycompany.easyshopproyecto.logica;
 
-
 public class Productos {
-    
+
     private int id;
-    private String categoria;
+    private String idCategoria; // Cambiado a idCategoria
     private String nombre;
     private int cantidad;
     private double precio;
@@ -15,9 +13,9 @@ public class Productos {
     public Productos() {
     }
 
-    public Productos(int id, String categoria, String nombre, int cantidad, double precio, String descripcion, String idProveedor) {
+    public Productos(int id, String idCategoria, String nombre, int cantidad, double precio, String descripcion, String idProveedor) {
         this.id = id;
-        this.categoria = categoria;
+        this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
@@ -33,12 +31,12 @@ public class Productos {
         this.id = id;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getIdCategoria() { // Cambiado a idCategoria
+        return idCategoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(String idCategoria) { // Cambiado a idCategoria
+        this.idCategoria = idCategoria;
     }
 
     public String getNombre() {
@@ -80,13 +78,4 @@ public class Productos {
     public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
     }
-
-    public void add(Productos producto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
-            
-            
-    
 }

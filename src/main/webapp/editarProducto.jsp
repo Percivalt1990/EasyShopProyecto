@@ -46,7 +46,7 @@
                 <input type="hidden" name="id" value="${producto.id}">
 
                 <label>Categoria:</label>
-                <input type="text" name="categoria" required value="${producto.categoria}">
+                <input type="text" name="categoria" required value="${producto.idCategoria}">
 
                 <label>Nombre del producto:</label>
                 <input type="text" name="nombre" required value="${producto.nombre}">

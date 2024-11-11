@@ -51,7 +51,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Categoría</th>
+                        <th>Id Categoría</th>
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
@@ -64,7 +64,7 @@
                     <c:forEach var="producto" items="${productosFiltrados}">
                         <tr>
                             <td>${producto.id}</td>
-                            <td>${producto.categoria}</td>
+                            <td>${producto.idCategoria}</td>
                             <td>${producto.nombre}</td>
                             <td>${producto.cantidad}</td>
                             <td>${producto.precio}</td>

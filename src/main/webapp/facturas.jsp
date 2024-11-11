@@ -46,8 +46,8 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Cliente</th>
-                            <th>Usuario</th>
+                            <th>IdCliente</th>
+                            <th>IdUsuario</th>
                             <th>Forma de pago</th>
                             <th>Fecha</th>
                             <th>Total</th>
@@ -58,8 +58,8 @@
                         <c:forEach var="factura" items="${facturas}">
                             <tr>
                                 <td>${factura.id}</td>
-                                <td>${factura.cliente.nombre}</td>
-                                <td>${factura.usuario.nombre}</td>
+                                <td>${factura.idCliente}</td>
+                                <td>${factura.idUsuario}</td>
                                 <td>${factura.formaPago}</td>
                                 <td>${factura.fecha}</td>
                                 <td>${factura.total}</td>

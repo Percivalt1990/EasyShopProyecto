@@ -13,13 +13,9 @@
         <div class="header">
             <div class="logo">
                 <img src="${pageContext.request.contextPath}/img/tituloPOS.png" alt="Logo">
-            </div>             
+            </div>
             <h1>Menú</h1>
-        </div>     
-         <!-- Mostrar el usuario logeado -->
-        <div class="usuario-logeado">
-            <p>Bienvenido, ${usuario.nombre}</p>
-        </div>    
+        </div>
         <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
         <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>

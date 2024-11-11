@@ -1,10 +1,12 @@
+
 package com.mycompany.easyshopproyecto.logica;
+
 
 public class Facturas {
     
     private int id;
-    private Clientes cliente;  // Relación con Cliente
-    private Usuarios usuario;  // Relación con Usuario
+    private int idCliente;
+    private int idUsuario;
     private String formaPago;
     private String fecha;
     private long total;
@@ -13,10 +15,10 @@ public class Facturas {
     public Facturas() {
     }
 
-    public Facturas(int id, Clientes cliente, Usuarios usuario, String formaPago, String fecha, long total, String pdfUrl) {
+    public Facturas(int id, int idCliente, int idUsuario, String formaPago, String fecha, long total, String pdfUrl) {
         this.id = id;
-        this.cliente = cliente;
-        this.usuario = usuario;
+        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.formaPago = formaPago;
         this.fecha = fecha;
         this.total = total;
@@ -31,20 +33,20 @@ public class Facturas {
         this.id = id;
     }
 
-    public Clientes getCliente() {
-        return cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Usuarios getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getFormaPago() {
@@ -78,4 +80,10 @@ public class Facturas {
     public void setPdfUrl(String pdfUrl) {
         this.pdfUrl = pdfUrl;
     }
+
+  
+
+
+    
+              
 }

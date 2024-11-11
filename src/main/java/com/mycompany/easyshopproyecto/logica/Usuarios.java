@@ -9,10 +9,9 @@ public class Usuarios {
     private String telefono;
     private String password;
     private String confirmacion;
-    private Boolean permisos; // Cambiado a Boolean para permitir null
+    private Boolean permisos;
 
-    public Usuarios() {
-    }
+    public Usuarios() {}
 
     public Usuarios(int id, String nombre, String tipoDocumento, String numeroDocumento, String email, String telefono, String password, String confirmacion, Boolean permisos) {
         this.id = id;

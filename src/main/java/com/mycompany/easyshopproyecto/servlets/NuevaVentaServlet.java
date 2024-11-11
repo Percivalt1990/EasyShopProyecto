@@ -30,7 +30,6 @@ public class NuevaVentaServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("Init ejecutado");
-        
         List<ProductosVenta> productos = new ArrayList<>();
         productos.add(new ProductosVenta(1, "Coca Cola", 2500, 10));
         productos.add(new ProductosVenta(2, "Arroz", 3000, 50));

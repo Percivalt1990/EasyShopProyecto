@@ -85,15 +85,6 @@
             <!-- Sección de productos seleccionados -->
             <div class="secciones productos-seleccionados">
                 <h2>Productos Seleccionados</h2>
-                <!-- Label e input para ingresar el ID del cliente -->
-                <div class="cliente-id">
-                    <label for="idCliente">ID Cliente:</label>
-                    <form action="${pageContext.request.contextPath}/NuevaVentaServlet" method="GET" style="display:inline;">
-                        <input type="text" id="idCliente" name="idCliente" placeholder="Ingrese ID Cliente" required>
-                        <button type="submit" class="btn Buscar">Buscar Cliente</button>
-                    </form>
-                </div>
-                
                 <div class="productos-seleccionados"> 
                     <!-- Tabla de productos seleccionados -->
                     <table class="carritoVentas">

@@ -15,144 +15,139 @@ import java.util.List;
 public class UsuariosServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UsuarioDAO usuarioDAO;
+    private Connection connection;
 
     @Override
     public void init() throws ServletException {
-        Connection connection = ConexionDB.getConnection();
+        connection = ConexionDB.getConnection();
         usuarioDAO = new UsuarioDAO(connection);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-
-        if (action == null || action.isEmpty()) {
-            listarUsuarios(request, response);
-        } else if ("buscar".equals(action)) {
-            buscarUsuario(request, response);
-        } else if ("cargar".equals(action)) {
-            cargarUsuario(request, response);
+        try {
+            if (action == null || action.isEmpty()) {
+                listarUsuarios(request, response);
+            } else {
+                switch (action) {
+                    case "buscar":
+                        buscarUsuario(request, response);
+                        break;
+                    case "cargar":
+                        cargarUsuario(request, response);
+                        break;
+                    default:
+                        listarUsuarios(request, response);
+                        break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new ServletException("Error al procesar la solicitud GET", e);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-
-        switch (action) {
-            case "crear":
-                crearUsuario(request, response);
-                break;
-            case "editar":
-                editarUsuario(request, response);
-                break;
-            case "eliminar":
-                eliminarUsuario(request, response);
-                break;
-            default:
-                listarUsuarios(request, response);
-                break;
-        }
-    }
-
-    private void listarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Usuarios> usuarios = usuarioDAO.listarUsuarios();
-            request.setAttribute("usuariosFiltrados", usuarios);
-            request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+            switch (action) {
+                case "crear":
+                    crearUsuario(request, response);
+                    break;
+                case "editar":
+                    editarUsuario(request, response);
+                    break;
+                case "eliminar":
+                    eliminarUsuario(request, response);
+                    break;
+                default:
+                    listarUsuarios(request, response);
+                    break;
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al listar usuarios.");
+            throw new ServletException("Error al procesar la solicitud POST", e);
         }
     }
 
-    private void buscarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // Método para listar todos los usuarios
+    private void listarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Usuarios> usuarios = usuarioDAO.listarUsuarios();
+        request.setAttribute("usuariosFiltrados", usuarios);
+        request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+    }
+
+    // Método para buscar usuarios por nombre o documento
+    private void buscarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String search = request.getParameter("search");
-        try {
-            List<Usuarios> usuarios = usuarioDAO.buscarUsuarios(search);
-            request.setAttribute("usuariosFiltrados", usuarios);
-            request.getRequestDispatcher("usuarios.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al buscar usuarios.");
-        }
+        List<Usuarios> usuariosFiltrados = usuarioDAO.buscarUsuarioPorNombreODocumento(search);
+        request.setAttribute("usuariosFiltrados", usuariosFiltrados);
+        request.getRequestDispatcher("usuarios.jsp").forward(request, response);
     }
 
-    private void crearUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Usuarios usuario = new Usuarios();
-        usuario.setNombre(request.getParameter("nombre"));
-        usuario.setTipoDocumento(request.getParameter("tipoDocumento"));
-        usuario.setNumeroDocumento(request.getParameter("numeroDocumento"));
-        usuario.setEmail(request.getParameter("email"));
-        usuario.setTelefono(request.getParameter("telefono"));
-        usuario.setPassword(request.getParameter("password"));
-        usuario.setConfirmacion(request.getParameter("confirmacion"));
-        usuario.setPermisos("on".equals(request.getParameter("permisos")));
-
-        try {
-            usuarioDAO.crearUsuario(usuario);
+    // Método para cargar un usuario específico para edición
+    private void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Usuarios usuario = usuarioDAO.buscarUsuarioPorId(id);
+        if (usuario != null) {
+            request.setAttribute("usuario", usuario);
+            request.getRequestDispatcher("editarUsuario.jsp").forward(request, response);
+        } else {
             response.sendRedirect("UsuariosServlet");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al registrar usuario.");
         }
     }
 
-    private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Usuarios usuario = new Usuarios();
-        usuario.setId(Integer.parseInt(request.getParameter("id")));
-        usuario.setNombre(request.getParameter("nombre"));
-        usuario.setTipoDocumento(request.getParameter("tipoDocumento"));
-        usuario.setNumeroDocumento(request.getParameter("numeroDocumento"));
-        usuario.setEmail(request.getParameter("email"));
-        usuario.setTelefono(request.getParameter("telefono"));
-        usuario.setPassword(request.getParameter("password"));
-        usuario.setConfirmacion(request.getParameter("confirmacion"));
-        usuario.setPermisos("on".equals(request.getParameter("permisos")));
+    // Método para crear un nuevo usuario
+    private void crearUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Usuarios nuevoUsuario = new Usuarios();
+        nuevoUsuario.setNombre(request.getParameter("nombre"));
+        nuevoUsuario.setTipoDocumento(request.getParameter("tipoDocumento"));
+        nuevoUsuario.setNumeroDocumento(request.getParameter("numeroDocumento"));
+        nuevoUsuario.setEmail(request.getParameter("email"));
+        nuevoUsuario.setTelefono(request.getParameter("telefono"));
+        nuevoUsuario.setPassword(request.getParameter("password"));
+        nuevoUsuario.setConfirmacion(request.getParameter("confirmacion"));
+        nuevoUsuario.setPermisos(request.getParameter("permisos") != null);
 
+        usuarioDAO.crearUsuario(nuevoUsuario);
+        response.sendRedirect("UsuariosServlet"); // Redirige a doGet para listar usuarios
+    }
+
+    // Método para editar un usuario existente
+    private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Usuarios usuario = usuarioDAO.buscarUsuarioPorId(id);
+
+        if (usuario != null) {
+            usuario.setNombre(request.getParameter("nombre"));
+            usuario.setTipoDocumento(request.getParameter("tipoDocumento"));
+            usuario.setNumeroDocumento(request.getParameter("numeroDocumento"));
+            usuario.setEmail(request.getParameter("email"));
+            usuario.setTelefono(request.getParameter("telefono"));
+            usuario.setPassword(request.getParameter("password"));
+            usuario.setConfirmacion(request.getParameter("confirmacion"));
+            usuario.setPermisos(request.getParameter("permisos") != null);
+
+            usuarioDAO.actualizarUsuario(usuario);
+        }
+        response.sendRedirect("UsuariosServlet");
+    }
+
+    // Método para eliminar un usuario
+    private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        usuarioDAO.eliminarUsuario(id);
+        response.sendRedirect("UsuariosServlet");
+    }
+
+    @Override
+    public void destroy() {
         try {
-            if (usuarioDAO.actualizarUsuario(usuario)) {
-                response.sendRedirect("UsuariosServlet");
-            } else {
-                request.setAttribute("error", "Error al actualizar usuario.");
-                request.getRequestDispatcher("editarUsuario.jsp").forward(request, response);
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar usuario.");
         }
     }
-
-    private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        try {
-            usuarioDAO.eliminarUsuario(id);
-            response.sendRedirect("UsuariosServlet");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar usuario.");
-        }
-    }
-
-    private void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Cargando usuario para editar...");
-        int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println("ID recibido: " + id);
-        try {
-            Usuarios usuario = usuarioDAO.obtenerUsuarioPorId(id);
-            if (usuario != null) {
-                System.out.println("Usuario encontrado: " + usuario.getNombre());
-                request.setAttribute("usuario", usuario);
-                request.getRequestDispatcher("editarUsuario.jsp").forward(request, response);
-            } else {
-                System.out.println("Usuario no encontrado.");
-                response.sendRedirect("usuarios.jsp?error=UsuarioNoEncontrado");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al cargar usuario.");
-        }
-    }
-
-
 }

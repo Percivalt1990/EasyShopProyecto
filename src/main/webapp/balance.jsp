@@ -68,7 +68,7 @@
                             if (totalEgresos != null) {
                                 out.println(String.format("$%,d", totalEgresos));
                             } else {
-                                out.println("$0");
+                                out.println("$0.00");
                             }
                         %>
                     </div>

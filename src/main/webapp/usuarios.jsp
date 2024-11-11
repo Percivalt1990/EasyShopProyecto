@@ -9,18 +9,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleusuario.css">
 </head>
 <body>
-    <!-- Barra lateral -->
+    <!-- barra lateral -->
     <div class="sidebar">
         <div class="header">
             <div class="logo">
                 <img src="${pageContext.request.contextPath}/img/tituloPOS.png" alt="Logo">
-            </div>             
+            </div>
             <h1>Menú</h1>
-        </div>     
-        <!-- Mostrar el usuario logeado -->
-        <div class="usuario-logeado">
-            <p>Bienvenido, ${usuario.nombre}</p>
-        </div>    
+        </div>
         <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
         <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
@@ -28,12 +24,11 @@
         <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
         <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
         <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
-        <div class="modulo">   
-            <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y condiciones</a></div> 
-            <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
-        </div>  
+        <div class="modulo"></div>     
+        <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y condiciones</a></div> 
+        <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
     </div>    
-    
+
     <div class="contenido">
         <div class="anuncios">Anuncios</div>
         <h2>Usuarios</h2>
@@ -41,15 +36,17 @@
         
         <!-- Formulario de búsqueda -->
         <form action="${pageContext.request.contextPath}/UsuariosServlet" method="GET">
-            <input type="text" name="search" class="search-input" placeholder="Buscar..." value="${param.search}" >
             <input type="hidden" name="action" value="buscar">
+            <input type="text" name="search" class="search-input" placeholder="Buscar..." value="${param.search}">
             <button type="submit" class="btn Buscar">Buscar</button>
         </form>
             
         <div class="btn-container">
-            <!-- Enlace para crear un nuevo usuario -->
-            <button onclick="window.location.href='${pageContext.request.contextPath}/registro.jsp'" class="btn Crear">Nuevo</button>
+            <!-- Botón para crear un nuevo usuario -->
+            <button onclick="window.location.href='registro.jsp'" class="btn Crear">Nuevo</button>
         </div> 
+
+        <!-- Tabla de usuarios -->
         <table>
             <thead>
                 <tr>
@@ -58,11 +55,11 @@
                     <th>Tipo de Documento</th>
                     <th>N° de Documento</th>
                     <th>Email</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <th>Contraseña</th>
-                    <th>Confirmacion</th>
+                    <th>Confirmación</th>
                     <th>Permisos</th>
-                    <th>Accion</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody id="tablagestiondeusuario">
@@ -78,7 +75,7 @@
                         <td>${usuario.confirmacion}</td>
                         <td>${usuario.permisos}</td>
                         <td>
-                            <!-- Formulario para eliminar el usuario-->
+                            <!-- Formulario para eliminar el usuario -->
                             <form action="${pageContext.request.contextPath}/UsuariosServlet" method="POST" style="display:inline;">
                                 <input type="hidden" name="action" value="eliminar">
                                 <input type="hidden" name="id" value="${usuario.id}">

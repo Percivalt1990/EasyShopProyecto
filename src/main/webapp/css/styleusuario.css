@@ -131,11 +131,6 @@ body {
     color: white;   
 }
 
-.btn.Modificar {
-    background-color: #2291F2; /* Azul */
-    color: white;
-}
-
 .btn.Buscar {
     background: #3498db;
     color: white;

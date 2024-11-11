@@ -45,12 +45,6 @@ body {
     margin: 0;
 }
 
-.usuario-logeado p {
-    color: #7B00FA;
-    font-size: 0.9em; 
-}
-
-
 .sidebar a {
     color: rgba(118, 204, 164, 1);
     text-align: center;

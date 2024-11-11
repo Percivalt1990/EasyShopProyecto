@@ -3,7 +3,7 @@ package com.mycompany.easyshopproyecto.logica;
 
 
 public class Clientes {
-    private int idCliente;
+    private int id;
     private String nombre;
     private String documento;
     private String tipoDocumento;
@@ -15,7 +15,7 @@ public class Clientes {
     }
 
     public Clientes(int id, String nombre, String documento, String tipoDocumento, String telefono, String direccion, String email) {
-        this.idCliente = id;
+        this.id = id;
         this.nombre = nombre;
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
@@ -25,11 +25,11 @@ public class Clientes {
     }
 
     public int getId() {
-        return idCliente;
+        return id;
     }
 
     public void setId(int id) {
-        this.idCliente = id;
+        this.id = id;
     }
 
     public String getNombre() {

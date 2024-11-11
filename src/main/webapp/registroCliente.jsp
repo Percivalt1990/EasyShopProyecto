@@ -47,8 +47,8 @@
                 <label>Tipo de Documento:</label>
                 <input list="tipo_documento" id="tipoDocumento" name="tipoDocumento" required>
                 <datalist id="tipo_documento">
-                    <option value="Cedula de Ciudadania">
-                    <option value="Cedula de Extranjeria">
+                    <option value="Cédula de Ciudadanía">
+                    <option value="Cédula de Extranjería">
                 </datalist>
 
                 <label>Telefono:</label>

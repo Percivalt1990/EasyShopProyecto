@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
+    private Connection connection;
 
     public UsuarioDAO(Connection connection) {
+        this.connection = connection;
     }
 
-    // Método para autenticar usuario
+    // Autenticar usuario para inicio de sesión
     public Usuarios autenticar(String numeroDocumento, String password) throws SQLException {
         String query = "SELECT * FROM usuarios WHERE numero_documento = ? AND password = ?";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, numeroDocumento);
             statement.setString(2, password);
-
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return mapResultSetToUsuario(resultSet);
@@ -29,11 +29,10 @@ public class UsuarioDAO {
         return null;
     }
 
-    // Método para crear un nuevo usuario
+    // Crear un nuevo usuario
     public boolean crearUsuario(Usuarios usuario) throws SQLException {
         String query = "INSERT INTO usuarios (nombre, tipo_documento, numero_documento, email, telefono, password, confirmacion, permisos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, usuario.getNombre());
             statement.setString(2, usuario.getTipoDocumento());
             statement.setString(3, usuario.getNumeroDocumento());
@@ -41,60 +40,16 @@ public class UsuarioDAO {
             statement.setString(5, usuario.getTelefono());
             statement.setString(6, usuario.getPassword());
             statement.setString(7, usuario.getConfirmacion());
-            statement.setBoolean(8, usuario.getPermisos() != null ? usuario.getPermisos() : false);
+            statement.setBoolean(8, usuario.getPermisos() != null && usuario.getPermisos());
             return statement.executeUpdate() > 0;
         }
     }
 
-    // Método para actualizar un usuario
-    public boolean actualizarUsuario(Usuarios usuario) throws SQLException {
-        String query = "UPDATE usuarios SET nombre = ?, tipo_documento = ?, numero_documento = ?, email = ?, telefono = ?, password = ?, confirmacion = ?, permisos = ? WHERE id = ?";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, usuario.getNombre());
-            statement.setString(2, usuario.getTipoDocumento());
-            statement.setString(3, usuario.getNumeroDocumento());
-            statement.setString(4, usuario.getEmail());
-            statement.setString(5, usuario.getTelefono());
-            statement.setString(6, usuario.getPassword());
-            statement.setString(7, usuario.getConfirmacion());
-            statement.setBoolean(8, usuario.getPermisos() != null ? usuario.getPermisos() : false);
-            statement.setInt(9, usuario.getId());
-            return statement.executeUpdate() > 0;
-        }
-    }
-
-    // Método para eliminar un usuario por su ID
-    public boolean eliminarUsuario(int id) throws SQLException {
-        String query = "DELETE FROM usuarios WHERE id = ?";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
-            return statement.executeUpdate() > 0;
-        }
-    }
-
-    // Método para obtener un usuario por su ID
-    public Usuarios obtenerUsuarioPorId(int id) throws SQLException {
-        String query = "SELECT * FROM usuarios WHERE id = ?";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return mapResultSetToUsuario(resultSet);
-                }
-            }
-        }
-        return null;
-    }
-
-    // Método para listar todos los usuarios
+    // Listar todos los usuarios
     public List<Usuarios> listarUsuarios() throws SQLException {
         List<Usuarios> usuarios = new ArrayList<>();
         String query = "SELECT * FROM usuarios";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
+        try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 usuarios.add(mapResultSetToUsuario(resultSet));
@@ -103,14 +58,26 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    // Método para buscar usuarios por nombre o número de documento
-    public List<Usuarios> buscarUsuarios(String search) throws SQLException {
+    // Buscar usuario por ID
+    public Usuarios buscarUsuarioPorId(int id) throws SQLException {
+        String query = "SELECT * FROM usuarios WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return mapResultSetToUsuario(resultSet);
+            }
+        }
+        return null;
+    }
+
+    // Buscar usuario por nombre o documento
+    public List<Usuarios> buscarUsuarioPorNombreODocumento(String criterio) throws SQLException {
         List<Usuarios> usuarios = new ArrayList<>();
         String query = "SELECT * FROM usuarios WHERE nombre LIKE ? OR numero_documento LIKE ?";
-        try (Connection connection = ConexionDB.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, "%" + search + "%");
-            statement.setString(2, "%" + search + "%");
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, "%" + criterio + "%");
+            statement.setString(2, "%" + criterio + "%");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 usuarios.add(mapResultSetToUsuario(resultSet));
@@ -119,7 +86,33 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    // Método auxiliar para mapear ResultSet a un objeto Usuarios
+    // Actualizar datos de usuario
+    public boolean actualizarUsuario(Usuarios usuario) throws SQLException {
+        String query = "UPDATE usuarios SET nombre = ?, tipo_documento = ?, numero_documento = ?, email = ?, telefono = ?, password = ?, confirmacion = ?, permisos = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getTipoDocumento());
+            statement.setString(3, usuario.getNumeroDocumento());
+            statement.setString(4, usuario.getEmail());
+            statement.setString(5, usuario.getTelefono());
+            statement.setString(6, usuario.getPassword());
+            statement.setString(7, usuario.getConfirmacion());
+            statement.setBoolean(8, usuario.getPermisos() != null && usuario.getPermisos());
+            statement.setInt(9, usuario.getId());
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    // Eliminar usuario por ID
+    public boolean eliminarUsuario(int id) throws SQLException {
+        String query = "DELETE FROM usuarios WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    // Mapear ResultSet a objeto Usuario
     private Usuarios mapResultSetToUsuario(ResultSet resultSet) throws SQLException {
         Usuarios usuario = new Usuarios();
         usuario.setId(resultSet.getInt("id"));
