@@ -32,11 +32,54 @@ body {
 }
 
 .logo img {
-    margin-top: 30px ;
+    margin-top: 30px;
     width: 80px;
     height: 70px;
     border-radius: 30%;
     background-color: rgba(118, 204, 164, 1);
+}
+
+
+.sidebar .usuario {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(118, 204, 164, 1);
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--color-texto);
+    overflow: hidden; /* Evita que el contenido salga del contenedor */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    
+}
+
+
+.sidebar .usuario img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.sidebar .usuario .info-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    max-width: 70%;/* Ajusta el ancho máximo según el espacio que tengas */
+}
+
+.sidebar .usuario .nombre {
+    font-size: 14px;
+    font-weight: bold;
+    color: white; 
+}
+
+.sidebar .usuario .email {
+    font-size: 9px;
+    color: white; 
+    opacity: 0.8;
 }
 
 .sidebar h1 {

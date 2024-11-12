@@ -1,39 +1,39 @@
-
 package com.mycompany.easyshopproyecto.logica;
 
-
 public class Balance {
-    
-    private long ingresos;
-    private long egresos;
+    private long totalVentas;
+    private long totalCompras;
+    private long balance;
 
-    public Balance() {
+    // Constructor con tres parámetros
+    public Balance(long totalVentas, long totalCompras, long balance) {
+        this.totalVentas = totalVentas;
+        this.totalCompras = totalCompras;
+        this.balance = balance;
     }
 
-    public Balance(long ingresos, long egresos) {
-        this.ingresos = ingresos;
-        this.egresos = egresos;
+    // Getters y Setters
+    public long getTotalVentas() {
+        return totalVentas;
     }
 
-    public long getIngresos() {
-        return ingresos;
+    public void setTotalVentas(long totalVentas) {
+        this.totalVentas = totalVentas;
     }
 
-    public void setIngresos(long ingresos) {
-        this.ingresos = ingresos;
+    public long getTotalCompras() {
+        return totalCompras;
     }
 
-    public long getEgresos() {
-        return egresos;
+    public void setTotalCompras(long totalCompras) {
+        this.totalCompras = totalCompras;
     }
 
-    public void setEgresos(long egresos) {
-        this.egresos = egresos;
+    public long getBalance() {
+        return balance;
     }
-    
-    
-    
-    
-    
-    
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
 }

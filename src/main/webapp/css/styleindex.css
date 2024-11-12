@@ -12,17 +12,17 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px; 
-    height: 100%; 
+    width: 200px;
+    height: 100%;
     background-color: rgba(217, 255, 220, 1);
     text-align: center;
     border-radius: 5px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding-bottom: 20px;
 }
 
 .header {
-    width: 100%; 
+    width: 100%;
     height: 140px;
     background-color: rgba(118, 204, 164, 1);
     text-align: center;
@@ -37,6 +37,49 @@ body {
     height: 70px;
     border-radius: 30%;
     background-color: rgba(118, 204, 164, 1);
+}
+
+
+.sidebar .usuario {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(118, 204, 164, 1);
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--color-texto);
+    overflow: hidden; /* Evita que el contenido salga del contenedor */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    
+}
+
+
+.sidebar .usuario img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.sidebar .usuario .info-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    max-width: 70%;/* Ajusta el ancho máximo según el espacio que tengas */
+}
+
+.sidebar .usuario .nombre {
+    font-size: 14px;
+    font-weight: bold;
+    color: white; 
+}
+
+.sidebar .usuario .email {
+    font-size: 9px;
+    color: white; 
+    opacity: 0.8;
 }
 
 .sidebar h1 {
@@ -86,6 +129,11 @@ body {
     color: white;
     text-align: center;
     color: white;
+}
+
+.anuncios img{
+    width: 100%;
+    height: 100%;
 }
 
 .contenido h2 {

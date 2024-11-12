@@ -18,6 +18,14 @@
             </div>
             <h1>Menú</h1>
         </div>
+            <div class="usuario">
+                <img src="${pageContext.request.contextPath}/img/icon-user2.jpg" alt="">
+                <div class="info-usuario">
+                    <span class="nombre">${sessionScope.usuario.nombre}</span>
+                    <span class="email">${sessionScope.usuario.email}</span>
+                </div>
+            </div>
+  
         <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
         <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>

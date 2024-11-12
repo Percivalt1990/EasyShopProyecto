@@ -3,9 +3,9 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* esto asegura que el body tenga al menos la altura de la ventana */
-    width: 100%; /* aqui se asegura que el body ocupe todo el ancho de la pantalla */
-    overflow-x: hidden; /* esto evita el desplazamiento horizontal */
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+    width: 100%; /* Asegura que el body ocupe todo el ancho de la pantalla */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
 .sidebar {
@@ -37,6 +37,43 @@ body {
     height: 70px;
     border-radius: 30%;
     background-color: rgba(118, 204, 164, 1);
+}
+
+
+.sidebar .usuario {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(118, 204, 164, 1);
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--color-texto); 
+}
+
+
+.sidebar .usuario img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.sidebar .usuario .info-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar .usuario .nombre {
+    font-size: 14px;
+    font-weight: bold;
+    color: white; 
+}
+
+.sidebar .usuario .email {
+    font-size: 12px;
+    color: white; 
+    opacity: 0.8;
 }
 
 .sidebar h1 {
