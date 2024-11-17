@@ -29,14 +29,14 @@
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
         <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
         <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-        <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
         <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
 
         <div class="modulo"></div>
         <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y condiciones</a></div>
         <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
     </div>
-
+    <!-- Contenido principal-->
     <div class="contenido"> 
         <div class="anuncios">Anuncios</div>
         <h2>Registrar Producto</h2>
@@ -64,7 +64,7 @@
                 <label>ID Proveedor:</label>
                 <input type="text" name="idProveedor" required>
 
-                <!-- Botones de Gestión -->
+                <!-- Botones -->
                 <div class="btn-container">
                     <button type="submit" class="btn Guardar">Guardar</button>
                     <button type="reset" class="btn Limpiar">Limpiar</button>

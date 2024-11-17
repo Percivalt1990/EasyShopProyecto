@@ -30,7 +30,7 @@
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
         <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
         <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-        <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
         <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
     
         <div class="modulo">    
@@ -38,7 +38,7 @@
             <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
         </div> 
     </div>    
-   
+    <!-- contenido principal -->    
     <div class="contenido"> 
         <div class="anuncios">Anuncios</div>
         <h2>Actualizar Cliente</h2>
@@ -48,7 +48,7 @@
                 <div class="error">${error}</div>
             </c:if>
 
-            <!-- El formulario envía los datos al servlet -->
+            <!-- Elemeneto formulario que envia los datos al servlet mediante el metodo post-->
             <form action="${pageContext.request.contextPath}/ClientesServlet" method="POST">
                 <h2>Editar cliente</h2>
                 <input type="hidden" name="action" value="editar">

@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 body {
@@ -11,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 .container {
@@ -21,7 +21,7 @@ body {
     border-radius: 20px;
     box-shadow: 7px 13px 37px #666;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 input {
@@ -32,11 +32,11 @@ input {
     border-radius: 20px;
     font-size: 14px; /* Ajuste del tamaño de fuente */
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 input::placeholder {
-    color: #aaa; /* Color más claro para los placeholders */
+    color: #aaa; /* Color mas claro para los placeholders */
 }
 
 input:valid {
@@ -47,7 +47,7 @@ input:valid {
     margin-top: 20px;
     margin-bottom: 20px;
     color: #B4DF37;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 .checkbox {
@@ -56,18 +56,18 @@ input:valid {
     margin: 10px 0;
     color: #7B00FA;
     justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 .checkbox input[type="checkbox"] {
-    width: 16px; /* Tamaño estándar del checkbox */
-    height: 16px; /* Tamaño estándar del checkbox */
+    width: 16px; /* Tamaño estandar del checkbox */
+    height: 16px; /* Tamaño estandar del checkbox */
     margin-right: 10px; /* Espacio entre el checkbox y la etiqueta */
     cursor: pointer; /* Cursor tipo puntero para el checkbox */
 }
 
 .checkbox label {
-    font-size: 14px; /* Tamaño de fuente más pequeño para el label del checkbox */
+    font-size: 14px; /* Tamaño de fuente mas pequeño para el label del checkbox */
     cursor: pointer; /* Cursor tipo puntero para la etiqueta */
 }
 
@@ -82,7 +82,7 @@ button {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estándar similar a GitHub */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente estandar similar a GitHub */
 }
 
 button:active {

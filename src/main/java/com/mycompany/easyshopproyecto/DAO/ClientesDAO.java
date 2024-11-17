@@ -15,7 +15,7 @@ public class ClientesDAO {
         this.connection = ConexionDB.getConnection();
     }
 
-    // Método para crear un nuevo cliente
+    // Metodo para crear un nuevo cliente
     public boolean crearCliente(Clientes cliente) {
         String sql = "INSERT INTO clientes (nombre, documento, tipo_documento, telefono, direccion, email) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -32,7 +32,7 @@ public class ClientesDAO {
         }
     }
 
-    // Método para listar todos los clientes
+    // Metodo para listar todos los clientes
     public List<Clientes> listarClientes() {
         List<Clientes> clientes = new ArrayList<>();
         String sql = "SELECT * FROM clientes";
@@ -56,7 +56,7 @@ public class ClientesDAO {
         return clientes;
     }
 
-    // Método para actualizar un cliente
+    // Metodo para actualizar un cliente
     public boolean actualizarCliente(Clientes cliente) {
         String sql = "UPDATE clientes SET nombre = ?, documento = ?, tipo_documento = ?, telefono = ?, direccion = ?, email = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -74,7 +74,7 @@ public class ClientesDAO {
         }
     }
 
-    // Método para eliminar un cliente por su ID
+    // Metodo para eliminar un cliente con su ID
     public boolean eliminarCliente(int id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -86,7 +86,7 @@ public class ClientesDAO {
         }
     }
 
-    // Método para obtener un cliente por su ID
+    // Metodo para obtener un cliente con su ID
     public Clientes obtenerClientePorId(int id) {
         String sql = "SELECT * FROM clientes WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -110,7 +110,7 @@ public class ClientesDAO {
         return null;
     }
 
-    // Método para buscar clientes por nombre o número de documento
+    // Metodo para buscar clientes por nombre o numero de documento
     public List<Clientes> buscarClientes(String search) {
         List<Clientes> clientes = new ArrayList<>();
         String sql = "SELECT * FROM clientes WHERE nombre LIKE ? OR documento LIKE ?";

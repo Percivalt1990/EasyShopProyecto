@@ -11,7 +11,7 @@ public class NuevaCompraDAO {
     public NuevaCompraDAO() {
         this.connection = ConexionDB.getConnection();
     }
-
+    //Meodo para listar los productos para compra
     public List<ProductosCompra> listarProductosCompra() {
         List<ProductosCompra> productos = new ArrayList<>();
         String query = "SELECT p.id, p.id_proveedor, p.nombre, p.precio, p.cantidad, pr.nombre AS nombre_proveedor " +
@@ -35,18 +35,48 @@ public class NuevaCompraDAO {
         return productos;
     }
     
-    // Método para registrar el total de una compra en la tabla compras
-    public boolean registrarCompra(long totalCompra) {
-        String query = "INSERT INTO compras (total) VALUES (?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setLong(1, totalCompra);
-            ps.executeUpdate();
+    
+    // Metodo para registrar una factura de compra y registrar el monto en compras
+    public boolean registrarFactura(List<ProductosCompra> carritoCompras, long totalCompra) {
+        String queryFacturaCompra = "INSERT INTO facturascompra (proveedor, producto, precio, cantidad, fecha) VALUES (?, ?, ?, ?, CURRENT_DATE)";
+        String queryCompra = "INSERT INTO compras (tipo, monto, fecha) VALUES ('egreso', ?, CURRENT_DATE)";
+        String queryActualizarInventario = "UPDATE productos SET cantidad = cantidad + ? WHERE id = ?";
+
+        try (PreparedStatement psFacturaCompra = connection.prepareStatement(queryFacturaCompra);
+             PreparedStatement psCompra = connection.prepareStatement(queryCompra);
+             PreparedStatement psActualizarInventario = connection.prepareStatement(queryActualizarInventario)) {
+
+            // Registrar cada producto en facturascompra
+            for (ProductosCompra producto : carritoCompras) {
+                psFacturaCompra.setString(1, producto.getProveedor());
+                psFacturaCompra.setString(2, producto.getNombre());
+                psFacturaCompra.setDouble(3, producto.getPrecio());
+                psFacturaCompra.setInt(4, producto.getCantidad());
+                psFacturaCompra.addBatch();
+
+                // Aumentar el inventario en base a la cantidad comprada
+                psActualizarInventario.setInt(1, producto.getCantidad());
+                psActualizarInventario.setInt(2, producto.getId());
+                psActualizarInventario.addBatch();
+            }
+            psFacturaCompra.executeBatch();
+            psActualizarInventario.executeBatch();
+
+            // Registrar el total en compras
+            psCompra.setLong(1, totalCompra);
+            psCompra.executeUpdate();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
+
+
+
+
 
     public List<ProductosCompra> buscarProductosCompra(String search) {
         List<ProductosCompra> productos = new ArrayList<>();
@@ -108,33 +138,5 @@ public class NuevaCompraDAO {
         return null;
     }
 
-    public boolean registrarCompra(List<ProductosCompra> carritoCompras, long total) {
-        String queryCompra = "INSERT INTO compras (fecha, total) VALUES (?, ?)";
-        String queryDetalle = "INSERT INTO detalle_compras (id_compra, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement psCompra = connection.prepareStatement(queryCompra, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement psDetalle = connection.prepareStatement(queryDetalle)) {
-
-            psCompra.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-            psCompra.setLong(2, total);
-            psCompra.executeUpdate();
-
-            ResultSet generatedKeys = psCompra.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int idCompra = generatedKeys.getInt(1);
-
-                for (ProductosCompra producto : carritoCompras) {
-                    psDetalle.setInt(1, idCompra);
-                    psDetalle.setInt(2, producto.getId());
-                    psDetalle.setInt(3, producto.getCantidad());
-                    psDetalle.setDouble(4, producto.getPrecio());
-                    psDetalle.addBatch();
-                }
-                psDetalle.executeBatch();
-            }
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+    
 }

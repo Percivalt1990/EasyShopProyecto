@@ -29,7 +29,7 @@
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
         <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
         <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-        <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
         <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
 
         <div class="modulo">   
@@ -37,11 +37,9 @@
             <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
         </div>  
     </div>
-
+    <!-- contenido principal -->     
     <div class="contenido-principal">
-        <div class="anuncios">
-            <img src="${pageContex.request.contextPath}/img/promo-header.jpg" alt="">
-        </div>
+        <div class="anuncios"></div>
         <h2>Bienvenido</h2>
         <h2>Accesos Rápidos</h2>
         
@@ -55,10 +53,10 @@
             <div class="seccion">
                 <h3>Nueva Venta</h3>
                 <p>Acceso para venta rápida.</p>
-                <a href="${pageContext.request.contextPath}/nuevaVenta.jsp" class="button">Ver más</a>
+                <a href="${pageContext.request.contextPath}/clienteForm.jsp" class="button">Ver más</a>
             </div>
 
-            <!-- aquí se pueden añadir más tarjetas como sea necesario -->
+            <!-- aqui se podrian añadir mas tarjetas como sea necesario -->
         </div>
     </div>
 </body>

@@ -70,14 +70,14 @@ public class UsuariosServlet extends HttpServlet {
         }
     }
 
-    // Método para listar todos los usuarios
+    // Metodo para listar todos los usuarios
     private void listarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Usuarios> usuarios = usuarioDAO.listarUsuarios();
         request.setAttribute("usuariosFiltrados", usuarios);
         request.getRequestDispatcher("usuarios.jsp").forward(request, response);
     }
 
-    // Método para buscar usuarios por nombre o documento
+    // Metodo para buscar usuarios por nombre o documento
     private void buscarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String search = request.getParameter("search");
         List<Usuarios> usuariosFiltrados = usuarioDAO.buscarUsuarioPorNombreODocumento(search);
@@ -85,7 +85,7 @@ public class UsuariosServlet extends HttpServlet {
         request.getRequestDispatcher("usuarios.jsp").forward(request, response);
     }
 
-    // Método para cargar un usuario específico para edición
+    // Metodo para cargar un usuario especifico para editarlo
     private void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         Usuarios usuario = usuarioDAO.buscarUsuarioPorId(id);
@@ -97,7 +97,7 @@ public class UsuariosServlet extends HttpServlet {
         }
     }
 
-    // Método para crear un nuevo usuario
+    // Metodo para crear un nuevo usuario
     private void crearUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Usuarios nuevoUsuario = new Usuarios();
         nuevoUsuario.setNombre(request.getParameter("nombre"));
@@ -110,10 +110,10 @@ public class UsuariosServlet extends HttpServlet {
         nuevoUsuario.setPermisos(request.getParameter("permisos") != null);
 
         usuarioDAO.crearUsuario(nuevoUsuario);
-        response.sendRedirect("UsuariosServlet"); // Redirige a doGet para listar usuarios
+        response.sendRedirect("login.jsp"); 
     }
 
-    // Método para editar un usuario existente
+    // Metodo para editar un usuario existente
     private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         Usuarios usuario = usuarioDAO.buscarUsuarioPorId(id);
@@ -133,7 +133,7 @@ public class UsuariosServlet extends HttpServlet {
         response.sendRedirect("UsuariosServlet");
     }
 
-    // Método para eliminar un usuario
+    // Metodo para eliminar un usuario
     private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         usuarioDAO.eliminarUsuario(id);

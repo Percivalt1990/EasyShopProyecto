@@ -27,18 +27,18 @@
   
         <nav>
             <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
-            <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
-            <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
-            <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
-            <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-            <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
-            <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
+        <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
+        <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
+        <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
+        <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
+        <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
         </nav>
         <div class="modulo"></div>     
         <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y condiciones</a></div> 
         <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
     </aside>    
-    
+    <!-- Contenido principal-->
     <div class="contenido"> 
         <div class="anuncios">Anuncios</div>
         <h1>Productos</h1>

@@ -1,35 +1,49 @@
 package com.mycompany.easyshopproyecto.dao;
 
-import com.mycompany.easyshopproyecto.logica.Balance;
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BalanceDAO {
     private Connection connection;
 
     public BalanceDAO() {
-        this.connection = ConexionDB.getConnection();
+        try {
+            this.connection = ConexionDB.getConnection();
+            if (this.connection == null) {
+                System.out.println("Error: Conexión a la base de datos no establecida.");
+            } else {
+                System.out.println("Conexión a la base de datos establecida correctamente.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-    public Balance obtenerBalanceDiario() {
-        String query = "SELECT " +
-                       "(SELECT IFNULL(SUM(total), 0) FROM ventas WHERE DATE(fecha) = CURDATE()) AS total_ventas, " +
-                       "(SELECT IFNULL(SUM(total), 0) FROM compras WHERE DATE(fecha) = CURDATE()) AS total_compras, " +
-                       "(SELECT IFNULL(SUM(total), 0) FROM ventas WHERE DATE(fecha) = CURDATE()) - " +
-                       "(SELECT IFNULL(SUM(total), 0) FROM compras WHERE DATE(fecha) = CURDATE()) AS balance";
-
+    // Metodo para obtener total ingresos
+    public double obtenerTotalIngresos() {
+        String query = "SELECT COALESCE(SUM(monto), 0) AS total_ingresos FROM ventas WHERE DATE(fecha) = CURRENT_DATE";
         try (PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
-                return new Balance(
-                    rs.getLong("total_ventas"),
-                    rs.getLong("total_compras"),
-                    rs.getLong("balance")
-                );
+                return rs.getDouble("total_ingresos");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al obtener ingresos: " + e.getMessage());
         }
-        return null;
+        return 0.0;
+    }
+    // Metodo para obtener total egresos
+    public double obtenerTotalEgresos() {
+        String query = "SELECT COALESCE(SUM(monto), 0) AS total_egresos FROM compras WHERE DATE(fecha) = CURRENT_DATE";
+        try (PreparedStatement ps = connection.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getDouble("total_egresos");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener egresos: " + e.getMessage());
+        }
+        return 0.0;
     }
 }

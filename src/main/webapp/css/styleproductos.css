@@ -3,8 +3,8 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
-    width: 100%; /* Asegura que el body ocupe todo el ancho de la pantalla */
+    min-height: 100vh; /* Esto asegura que el body tenga al menos la altura de la ventana */
+    width: 100%; /* Esto asegura que el body ocupe todo el ancho de la pantalla */
     overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
@@ -164,6 +164,10 @@ body {
     color: white;
 }
 
+.btn.buscar {
+    background: #3498db;
+    color: white;
+}
 
 table {
     width: 100%;
