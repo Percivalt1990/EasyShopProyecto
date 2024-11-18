@@ -49,7 +49,7 @@ body {
     margin: 10px;
     color: var(--color-texto);
     overflow: hidden; /* Evita que el contenido salga del contenedor */
-    white-space: nowrap; /* Evita que el texto se divida en varias lineas */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
     
 }
 
@@ -66,8 +66,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
-    white-space: nowrap; /* Mantiene el texto en una sola linea */
-    max-width: 70%;/* Ajusta el ancho maximo segun el espacio que tengas */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    max-width: 70%;/* Ajusta el ancho máximo según el espacio que tengas */
 }
 
 .sidebar .usuario .nombre {
@@ -160,7 +160,7 @@ body {
 .formulario input {
     width: calc(100% - 22px);
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
     font-size: 16px;
@@ -178,29 +178,22 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
+    width: auto;
     text-align: center; 
 }
 
 
-.btn.Crear {
+.btn.BuscarCliente {
     background-color: #4CAF50; /* verde */
     color: white;
 }
-.btn.Limpiar{
-    background-color: #B5B3B3; /* azul*/
-    color: white;
-}
 
-.btn.Regresar {
+.btn.Omitir {
     background-color: #2291F2; /* azul */
     color: white;
 }
 
-.btn.Guardar{
-    background-color: #4CAF50; /* verde */
-    color: white;
-}
+
 
 @media(max-width: 768px){
     .sidebar {
@@ -238,5 +231,7 @@ body {
     .contenido {
         margin-left: 140px; /* Ajusta el margen de la parte principal al tamaño de la sidebar */
     }
-
 }
+
+
+

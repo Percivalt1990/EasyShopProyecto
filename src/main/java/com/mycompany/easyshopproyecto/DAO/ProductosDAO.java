@@ -15,7 +15,7 @@ public class ProductosDAO {
         this.connection = ConexionDB.getConnection();
     }
 
-    // Método para crear un nuevo producto
+    // Metodo para crear un nuevo producto
     public boolean crearProducto(Productos producto) {
         String sql = "INSERT INTO productos (id_categoria, nombre, cantidad, precio, descripcion, id_proveedor) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -32,7 +32,7 @@ public class ProductosDAO {
         }
     }
 
-    // Método para listar todos los productos
+    // Metodo para listar todos los productos
     public List<Productos> listarProductos() {
         List<Productos> productos = new ArrayList<>();
         String sql = "SELECT * FROM productos";
@@ -56,7 +56,7 @@ public class ProductosDAO {
         return productos;
     }
 
-    // Método para buscar productos por nombre o descripción
+    // Metodo para buscar productos por nombre o descripcion
     public List<Productos> buscarProductos(String search) {
         List<Productos> productos = new ArrayList<>();
         String sql = "SELECT * FROM productos WHERE nombre LIKE ? OR descripcion LIKE ?";
@@ -83,7 +83,7 @@ public class ProductosDAO {
         return productos;
     }
 
-    // Método para actualizar un producto
+    // Metodo para actualizar un producto
     public boolean actualizarProducto(Productos producto) {
         String sql = "UPDATE productos SET id_categoria = ?, nombre = ?, cantidad = ?, precio = ?, descripcion = ?, id_proveedor = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -101,7 +101,7 @@ public class ProductosDAO {
         }
     }
 
-    // Método para eliminar un producto por su ID
+    // Metodo para eliminar un producto por su ID
     public boolean eliminarProducto(int id) {
         String sql = "DELETE FROM productos WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -113,7 +113,7 @@ public class ProductosDAO {
         }
     }
 
-    // Método para obtener un producto por su ID
+    // Metodo para obtener un producto por su ID
     public Productos obtenerProductoPorId(int id) {
         String sql = "SELECT * FROM productos WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {

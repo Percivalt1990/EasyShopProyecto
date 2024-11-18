@@ -1,16 +1,15 @@
 <<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Ruta directa al archivo CSS -->
     <link rel="stylesheet" href="css/styleterminos.css">
     <title>Términos y condiciones</title>
 </head>
 <body>
     <div class="documento">
-        <h1>Términos y Condiciones del Sistema POS Web Easyshop</h1>
+        <h1>Términos y Condiciones del Sistema POS Web Easyshop(Esto es solo un ejemeplo de como deberia de verse el elemento )</h1>
         <p><strong>Fecha de Vigencia:</strong> 14 de agosto de 2024</p>
 
         <h2>1. Aceptación de los Términos</h2>

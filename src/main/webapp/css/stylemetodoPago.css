@@ -49,7 +49,7 @@ body {
     margin: 10px;
     color: var(--color-texto);
     overflow: hidden; /* Evita que el contenido salga del contenedor */
-    white-space: nowrap; /* Evita que el texto se divida en varias lineas */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
     
 }
 
@@ -66,8 +66,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
-    white-space: nowrap; /* Mantiene el texto en una sola linea */
-    max-width: 70%;/* Ajusta el ancho maximo segun el espacio que tengas */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    max-width: 70%;/* Ajusta el ancho máximo según el espacio que tengas */
 }
 
 .sidebar .usuario .nombre {
@@ -157,28 +157,27 @@ body {
 }
 
 
-.formulario input {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border-radius: 20px;
+.metodoPago{
+    padding: 8px;
+    border-radius: 5px;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
-    font-size: 16px;
+    width: 250px;
+    margin-right: 10px;
 }
 
 .btn-container{
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap:20px;
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 8px 20px;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
+    width: 130px;
     text-align: center; 
 }
 
@@ -188,7 +187,7 @@ body {
     color: white;
 }
 .btn.Limpiar{
-    background-color: #B5B3B3; /* azul*/
+    background-color: #B5B3B3; /* gris*/
     color: white;
 }
 
@@ -240,3 +239,4 @@ body {
     }
 
 }
+

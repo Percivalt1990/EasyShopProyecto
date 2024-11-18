@@ -12,7 +12,7 @@ public class ProveedoresDAO {
         this.connection = ConexionDB.getConnection();
     }
 
-    // Método para crear un nuevo proveedor
+    // Metodo para crear un nuevo proveedor
     public boolean crearProveedor(Proveedores proveedor) {
         String sql = "INSERT INTO proveedores (nombre, numero_telefonico, direccion, email) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -27,7 +27,7 @@ public class ProveedoresDAO {
         }
     }
 
-    // Método para listar todos los proveedores
+    // Metodo para listar todos los proveedores
     public List<Proveedores> listarProveedores() {
         List<Proveedores> proveedores = new ArrayList<>();
         String sql = "SELECT * FROM proveedores";
@@ -49,7 +49,7 @@ public class ProveedoresDAO {
         return proveedores;
     }
 
-    // Método para buscar proveedores
+    // Metodo para buscar proveedores
     public List<Proveedores> buscarProveedores(String search) {
         List<Proveedores> proveedores = new ArrayList<>();
         String sql = "SELECT * FROM proveedores WHERE nombre LIKE ? OR email LIKE ?";
@@ -74,7 +74,7 @@ public class ProveedoresDAO {
         return proveedores;
     }
 
-    // Método para actualizar un proveedor
+    // Metodo para actualizar un proveedor
     public boolean actualizarProveedor(Proveedores proveedor) {
         String sql = "UPDATE proveedores SET nombre = ?, numero_telefonico = ?, direccion = ?, email = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -90,7 +90,7 @@ public class ProveedoresDAO {
         }
     }
 
-    // Método para eliminar un proveedor
+    // Metodo para eliminar un proveedor
     public boolean eliminarProveedor(int id) {
         String sql = "DELETE FROM proveedores WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -102,7 +102,7 @@ public class ProveedoresDAO {
         }
     }
 
-    // Método para obtener un proveedor por ID
+    // Metodo para obtener un proveedor por ID
     public Proveedores obtenerProveedorPorId(int id) {
         String sql = "SELECT * FROM proveedores WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {

@@ -2,10 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Formato de registro</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleregistro.css">
+    <!-- estilos adicionales-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -14,7 +15,7 @@
             <h1>REGISTRO</h1>            
         </div>
 
-        <!-- Mostrar mensaje de éxito o error -->
+        <!-- Mostrar mensajes de exito de registro o error -->
         <c:if test="${not empty mensajeExito}">
             <div class="success-message">
                 <p style="color: green;">${mensajeExito}</p>

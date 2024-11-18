@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Página de Ingreso</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/stylelogin.css">
@@ -19,7 +19,7 @@
             </div>
         </c:if>
         
-        <!-- Formulario de login -->
+        <!-- Formulario de login (Ingreso con credenciales)-->
         <form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
             <label for="numeroDocumento">Numero de Documento</label>
             <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="Numero de Documento" required>

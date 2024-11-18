@@ -3,9 +3,9 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-    min-height: 100vh; 
-    width: 100%; 
-    overflow-x: hidden; 
+    min-height: 100vh; /* Esto asegura que el body tenga al menos la altura de la ventana */
+    width: 100%; /* Esto asegura que el body ocupe todo el ancho de la pantalla */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
 .sidebar {
@@ -13,11 +13,11 @@ body {
     top: 0;
     left: 0;
     width: 200px;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(217, 255, 220, 1);
     text-align: center;
     border-radius: 5px;
-    overflow-y: hidden;
+    overflow-y: auto;
     padding-bottom: 20px;
 }
 
@@ -37,6 +37,49 @@ body {
     height: 70px;
     border-radius: 30%;
     background-color: rgba(118, 204, 164, 1);
+}
+
+
+.sidebar .usuario {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(118, 204, 164, 1);
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--color-texto);
+    overflow: hidden; /* Evita que el contenido salga del contenedor */
+    white-space: nowrap; /* Evita que el texto se divida en varias lineas */
+    
+}
+
+
+.sidebar .usuario img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.sidebar .usuario .info-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
+    white-space: nowrap; /* Mantiene el texto en una sola linea */
+    max-width: 70%;/* Ajusta el ancho maximo según el espacio que tengas */
+}
+
+.sidebar .usuario .nombre {
+    font-size: 14px;
+    font-weight: bold;
+    color: white; 
+}
+
+.sidebar .usuario .email {
+    font-size: 9px;
+    color: white; 
+    opacity: 0.8;
 }
 
 .sidebar h1 {
@@ -102,34 +145,110 @@ body {
     margin-bottom: 50px;
     align-items: center;
     justify-content: center;
+    gap:20px
 }
 
-.boton {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 190px;
-    height: 50px;
-    border-radius: 50px;
-    border: 1px solid white;
-    margin: 0 30px;
+/* General styles for buttons */
+button {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+    width: 190px; /* Match original button width */
+    height: 50px; /* Match original button height */
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* Match original button border-radius */
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to left, hsl(0deg 0% 0% / 0.1) 0%, hsl(0deg 0% 0% / 0.2) 100%);
+}
+
+.front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 10px;
+    font-size: 1rem;
     color: white;
-    text-align: center;   
+    text-align: center;
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
 }
 
-.ventas a {
+/* Hover and active states */
+button:hover {
+    filter: brightness(110%);
+}
+
+button:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+/* Colors for Nueva venta (green) */
+.boton.venta .front {
+    background: #4CAF50; /* Green */
+}
+
+.boton.venta .edge {
+    background: linear-gradient(to left, #3e8e41, #4CAF50);
+}
+
+/* Colors for Nueva compra (red) */
+.boton.gasto .front {
+    background: #F44336; /* Red */
+}
+
+.boton.gasto .edge {
+    background: linear-gradient(to left, #d32f2f, #F44336);
+}
+
+/* Link styles inside buttons */
+button .front a {
+    color: white;
     text-decoration: none;
-    color: white;
+    font-weight: bold;
 }
 
-.boton[name="venta"] {
-    background-color: #4CAF50;
-
-}
-
-.boton[name="gasto"] {
-    background-color: #F44336;
-}
 
 .contenido p{
     color: aqua;

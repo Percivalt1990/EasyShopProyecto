@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/stylebalance.css">
 </head>
 <body>
-    <!-- barra lateral -->
+    <!-- Barra lateral -->
     <div class="sidebar">
         <div class="header">
             <div class="logo">
@@ -16,62 +18,47 @@
             </div>
             <h1>Menú</h1>
         </div>
+        <div class="usuario">
+            <img src="${pageContext.request.contextPath}/img/icon-user2.jpg" alt="">
+            <div class="info-usuario">
+                <span class="nombre">${sessionScope.usuario.nombre}</span>
+                <span class="email">${sessionScope.usuario.email}</span>
+            </div>
+        </div>
         <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
         <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
         <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
         <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
         <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-        <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
         <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
-    
-        <div class="modulo">    
-            <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y Condiciones</a></div> 
+        <div class="modulo">
+            <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y Condiciones</a></div>
             <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
-        </div> 
+        </div>
     </div>
-    
-    <div class="contenido"> 
+
+    <!-- Contenido principal -->
+    <div class="contenido">
         <div class="anuncios">Anuncios</div>
         <h2>Balance</h2>
         <div class="ventanas">
-            <!-- Sección de ingresos -->
             <div class="seccion">
-                <h3>Vista general de ingresos del dia</h3>
-                <div class="vista-ingresos">
-                    <div class="titulo">Ingresos</div>
-                    <div class="valor" id="vista-ingresos">
-                        <!-- Mostrar los ingresos almacenados en la sesion -->
-                        <div class="valor" id="vista-ingresos">
-                            <%
-                                Long totalIngresos = (Long) session.getAttribute("totalIngresos");
-                                if (totalIngresos != null) {
-                                    out.println(String.format("$%,d", totalIngresos));
-                                } else {
-                                    out.println("$0");
-                                }
-                            %>
-                        </div>
-
-                    </div>
+                <h3 class="ingresos">Ingresos del Dia</h3>
+                <div class="valor">
+                    $<c:out value="${totalIngresos}" />
                 </div>
             </div>
-            
-            <!-- Sección de egresos -->
             <div class="seccion">
-                <h3>Vista general de egresos del dia</h3>
-                <div class="vista-egresos">
-                    <div class="titulo">Egresos</div>
-                    <div class="valor" id="vista-egresos">
-                        <!-- Mostrar los egresos almacenados en la sesion -->
-                        <%
-                            Long totalEgresos = (Long) session.getAttribute("totalEgresos");
-                            if (totalEgresos != null) {
-                                out.println(String.format("$%,d", totalEgresos));
-                            } else {
-                                out.println("$0.00");
-                            }
-                        %>
-                    </div>
+                <h3 class="egresos">Egresos del Dia</h3>
+                <div class="valor">
+                    $<c:out value="${totalEgresos}" />
+                </div>
+            </div>
+            <div class="seccion">
+                <h3 class="balance">Balance del Dia</h3>
+                <div class="valor">
+                    $<c:out value="${balance}" />
                 </div>
             </div>
         </div>

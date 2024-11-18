@@ -1,21 +1,18 @@
-
 package com.mycompany.easyshopproyecto.logica;
 
 import java.io.Serializable;
 
-
 public class ProductosCompra implements Serializable {
-    
-    public static final long serialVersionUID = 1L;
-    
+
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private String proveedor;
     private String nombre;
     private double precio;
     private int cantidad;
 
-    public ProductosCompra() {
-    }
+    public ProductosCompra() {}
 
     public ProductosCompra(int id, String proveedor, String nombre, double precio, int cantidad) {
         this.id = id;
@@ -64,10 +61,8 @@ public class ProductosCompra implements Serializable {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
-    // Get especial
-     public double getSubtotal() {
-            return this.precio * this.cantidad;
+
+    public double getSubtotal() {
+        return this.precio * this.cantidad;
     }
-    
 }

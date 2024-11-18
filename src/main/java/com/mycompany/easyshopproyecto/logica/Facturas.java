@@ -1,29 +1,31 @@
-
 package com.mycompany.easyshopproyecto.logica;
 
+import java.time.LocalDateTime;
 
 public class Facturas {
-    
     private int id;
-    private int idCliente;
-    private int idUsuario;
+    private int clienteId;
+    private int usuarioId;
     private String formaPago;
-    private String fecha;
+    private LocalDateTime fecha;
     private long total;
     private String pdfUrl;
 
     public Facturas() {
     }
 
-    public Facturas(int id, int idCliente, int idUsuario, String formaPago, String fecha, long total, String pdfUrl) {
+    public Facturas(int id, int clienteId, int usuarioId, String formaPago, LocalDateTime fecha, long total, String pdfUrl) {
         this.id = id;
-        this.idCliente = idCliente;
-        this.idUsuario = idUsuario;
+        this.clienteId = clienteId;
+        this.usuarioId = usuarioId;
         this.formaPago = formaPago;
         this.fecha = fecha;
         this.total = total;
         this.pdfUrl = pdfUrl;
     }
+    
+
+    // Getters y Setters para cada campo
 
     public int getId() {
         return id;
@@ -33,20 +35,20 @@ public class Facturas {
         this.id = id;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getClienteId() {
+        return clienteId;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getFormaPago() {
@@ -57,11 +59,11 @@ public class Facturas {
         this.formaPago = formaPago;
     }
 
-    public String getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -80,10 +82,4 @@ public class Facturas {
     public void setPdfUrl(String pdfUrl) {
         this.pdfUrl = pdfUrl;
     }
-
-  
-
-
-    
-              
 }

@@ -15,7 +15,7 @@ public class UsuarioDAO {
         this.connection = connection;
     }
 
-    // Autenticar usuario para inicio de sesión
+    // Autenticacion de usuario para inicio de sesion
     public Usuarios autenticar(String numeroDocumento, String password) throws SQLException {
         String query = "SELECT * FROM usuarios WHERE numero_documento = ? AND password = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -99,6 +99,16 @@ public class UsuarioDAO {
             statement.setString(7, usuario.getConfirmacion());
             statement.setBoolean(8, usuario.getPermisos() != null && usuario.getPermisos());
             statement.setInt(9, usuario.getId());
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    // Actualizar la contraseña de un usuario basado en su numero de documento
+    public boolean actualizarContrasena(String numeroDocumento, String nuevaContrasena) throws SQLException {
+        String query = "UPDATE usuarios SET password = ? WHERE numero_documento = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, nuevaContrasena);
+            statement.setString(2, numeroDocumento);
             return statement.executeUpdate() > 0;
         }
     }

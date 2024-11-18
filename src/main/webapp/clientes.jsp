@@ -17,37 +17,46 @@
             </div>
             <h1>Menú</h1>
         </div>
-            <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
-            <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
-            <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
-            <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
-            <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
-            <a href="${pageContext.request.contextPath}/balance.jsp" class="enlace">Balance</a>
-            <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
+            <div class="usuario">
+                <img src="${pageContext.request.contextPath}/img/icon-user2.jpg" alt="">
+                <div class="info-usuario">
+                    <span class="nombre">${sessionScope.usuario.nombre}</span>
+                    <span class="email">${sessionScope.usuario.email}</span>
+                </div>
+            </div>
+  
+        <a href="${pageContext.request.contextPath}/index.jsp" class="enlace">Inicio</a>
+        <a href="${pageContext.request.contextPath}/clientes.jsp" class="enlace">Clientes</a>
+        <a href="${pageContext.request.contextPath}/usuarios.jsp" class="enlace">Usuarios</a>
+        <a href="${pageContext.request.contextPath}/ventas.jsp" class="enlace">Ventas</a>
+        <a href="${pageContext.request.contextPath}/inventario.jsp" class="enlace">Inventarios</a>
+        <a href="${pageContext.request.contextPath}/BalanceServlet" class="enlace">Balance</a> 
+        <a href="${pageContext.request.contextPath}/facturas.jsp" class="enlace">Facturas</a>
 
         <div class="modulo">
             <div><a href="${pageContext.request.contextPath}/Terminos.jsp" target="_blank">Términos y condiciones</a></div>
             <div class="cerrar-sesion"><a href="${pageContext.request.contextPath}/login.jsp" name="cerrar">Cerrar sesión</a></div>
         </div>
     </div>
-
+    <!-- contenido principal -->    
     <div class="contenido"> 
         <div class="anuncios">Anuncios</div>
         <h2>Clientes</h2>
         <h2>Gestión de Clientes</h2>
         
         <div class="contenedor">
-            <!-- Formulario de búsqueda -->
+            <!-- Formulario de busqueda -->
             <div class="celda-busqueda">
                 <form action="${pageContext.request.contextPath}/ClientesServlet" method="GET">
                     <input type="text" name="search" class="search-input" placeholder="Buscar..." value="${param.search}">
                     <button type="submit" class="btn Buscar">Buscar</button>
                 </form>
             </div>
+            <!-- Boton de redireccion formulario registro -->
             <div class="btn-contenedor">
                 <button onclick="window.location.href='registroCliente.jsp'" class="btn Nuevo">Nuevo</button>
             </div>
-            
+            <!-- Inicio de tabla-->
             <table id="tablaClientes">
                 <thead>
                     <tr>

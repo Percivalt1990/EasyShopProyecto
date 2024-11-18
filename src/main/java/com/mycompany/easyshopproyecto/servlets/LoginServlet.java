@@ -26,14 +26,16 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String numeroDocumento = request.getParameter("numeroDocumento"); 
         String password = request.getParameter("password"); 
-        
+
         try (Connection connection = ConexionDB.getConnection()) {
             UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
             Usuarios usuario = usuarioDAO.autenticar(numeroDocumento, password);
-            
+
             if (usuario != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("usuario", usuario);
+                session.setAttribute("usuarioId", usuario.getId()); // Guarda el usuarioId en la sesión
+                session.setAttribute("nombreUsuario", usuario.getNombre()); // Guarda el nombre del usuario en la sesión
                 response.sendRedirect("index.jsp");
             } else {
                 request.setAttribute("errorMessage", "Usuario o contraseña incorrectos");
@@ -44,4 +46,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login.jsp?error=Error en el servidor");
         }
     }
+
+
+
 }
