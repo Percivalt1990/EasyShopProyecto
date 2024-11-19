@@ -103,12 +103,13 @@ public class UsuarioDAO {
         }
     }
 
-    // Actualizar la contraseña de un usuario basado en su numero de documento
-    public boolean actualizarContrasena(String numeroDocumento, String nuevaContrasena) throws SQLException {
-        String query = "UPDATE usuarios SET password = ? WHERE numero_documento = ?";
+    // Actualizar la contraseña y confirmación de un usuario basado en su numero_documento
+    public boolean actualizarContrasena(String numeroDocumento, String nuevaContrasena, String confirmacion) throws SQLException {
+        String query = "UPDATE usuarios SET password = ?, confirmacion = ? WHERE numero_documento = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, nuevaContrasena);
-            statement.setString(2, numeroDocumento);
+            statement.setString(2, confirmacion);
+            statement.setString(3, numeroDocumento);
             return statement.executeUpdate() > 0;
         }
     }

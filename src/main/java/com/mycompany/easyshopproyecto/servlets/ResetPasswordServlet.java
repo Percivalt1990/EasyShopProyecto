@@ -25,12 +25,10 @@ public class ResetPasswordServlet extends HttpServlet {
         String nuevaContrasena = request.getParameter("newPassword");
         String confirmarContrasena = request.getParameter("confirmPassword");
 
-        // Verificacion que las contraseñas coincidan
         if (nuevaContrasena.equals(confirmarContrasena)) {
             try {
-                boolean actualizacionExitosa = usuarioDAO.actualizarContrasena(numeroDocumento, nuevaContrasena);
-                if (actualizacionExitosa) {
-                    // Redirecciona a login exito en el cambio de contraseña
+                boolean resultado = usuarioDAO.actualizarContrasena(numeroDocumento, nuevaContrasena, confirmarContrasena);
+                if (resultado) {
                     response.sendRedirect("login.jsp?message=Contraseña actualizada exitosamente");
                 } else {
                     request.setAttribute("errorMessage", "Error al actualizar la contraseña. Verifica el número de documento.");
@@ -42,7 +40,6 @@ public class ResetPasswordServlet extends HttpServlet {
                 request.getRequestDispatcher("ResetPassword.jsp").forward(request, response);
             }
         } else {
-            // Muestra un mensaje de error si las contraseñas no coinciden
             request.setAttribute("errorMessage", "Las contraseñas no coinciden.");
             request.getRequestDispatcher("ResetPassword.jsp").forward(request, response);
         }
