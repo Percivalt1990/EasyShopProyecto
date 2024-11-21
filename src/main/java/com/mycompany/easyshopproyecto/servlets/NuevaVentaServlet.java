@@ -88,24 +88,32 @@ public class NuevaVentaServlet extends HttpServlet {
             eliminarProductoDelCarrito(request, response);
         } else if ("generateInvoice".equals(action)) {
             try {
-                generarFactura(request, response);
+                generarFactura(request, response); // Genera la factura
+
+                // Llama a generarPDF directamente después de generarFactura
+                HttpSession session = request.getSession();
+                List<ProductosVenta> carritoVentas = (List<ProductosVenta>) session.getAttribute("carritoVentas");
+                Clientes cliente = (Clientes) session.getAttribute("cliente");
+                long totalFactura = (long) session.getAttribute("totalIngresos");
+                String metodoPago = request.getParameter("metodoPago");
+                String nombreUsuario = (String) session.getAttribute("nombreUsuario");
+
+                generarPDF(response, carritoVentas, cliente, totalFactura, metodoPago, nombreUsuario);
+
             } catch (DocumentException ex) {
                 Logger.getLogger(NuevaVentaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if ("cancel".equals(action)) {
             cancelarVenta(request, response);
         } else if ("omitCliente".equals(action)) {
-        //  Bandera en la sesion para indicar que el cliente es opcional
             request.getSession().setAttribute("clienteOpcional", true);
-
-            
             response.sendRedirect("nuevaVenta.jsp");
-        } 
-        else {
+        } else {
             System.out.println("Acción no reconocida: " + action);
             response.getWriter().println("Acción no reconocida.");
         }
     }
+
 
     private void añadirProductoAlCarrito(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int idProducto = Integer.parseInt(request.getParameter("idProducto"));
@@ -162,8 +170,9 @@ public class NuevaVentaServlet extends HttpServlet {
     private void generarFactura(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DocumentException {
         HttpSession session = request.getSession();
 
+        // Obtención de datos de la sesión y validación
         List<ProductosVenta> carritoVentas = (List<ProductosVenta>) session.getAttribute("carritoVentas");
-        Clientes cliente = (Clientes) session.getAttribute("cliente"); // Cliente puede ser null
+        Clientes cliente = (Clientes) session.getAttribute("cliente");
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         String nombreUsuario = (String) session.getAttribute("nombreUsuario");
         String formaPago = request.getParameter("metodoPago");
@@ -183,10 +192,10 @@ public class NuevaVentaServlet extends HttpServlet {
             return;
         }
 
-        // Asignar cliente generico si el cliente es null
         if (cliente == null) {
+            // Asignar cliente genérico si no se seleccionó uno
             cliente = new Clientes();
-            cliente.setId(0); // Cliente generico con ID = 0
+            cliente.setId(0); // Cliente genérico con ID = 0
             cliente.setNombre("Sin Cliente");
             cliente.setDocumento("N/A");
             cliente.setTipoDocumento("N/A");
@@ -196,26 +205,26 @@ public class NuevaVentaServlet extends HttpServlet {
         }
 
         long totalFactura = carritoVentas.stream().mapToLong(p -> p.getCantidad() * (long) p.getPrecio()).sum();
-        String pdfUrl = "/path/to/generated/pdf/venta_" + System.currentTimeMillis() + ".pdf";
         session.setAttribute("totalIngresos", totalFactura);
 
-        // Registrar la factura usando el cliente generico si es necesario
+        // Registrar factura en la base de datos
         boolean facturaRegistrada = nuevaVentaDAO.registrarFactura(
-                cliente.getId(), // Usa el ID del cliente generico si el cliente es null
-                usuarioId, formaPago, totalFactura, pdfUrl
+                cliente.getId(), 
+                usuarioId, 
+                formaPago, 
+                totalFactura, 
+                "/ruta/pdf"
         );
 
         if (facturaRegistrada) {
+            // Generar PDF como respuesta al cliente
             generarPDF(response, carritoVentas, cliente, totalFactura, formaPago, nombreUsuario);
 
-            // Limpiar datos de la sesion para iniciar una nueva venta
+            // Limpiar datos de la sesión después de generar el PDF
             session.removeAttribute("carritoVentas");
             session.removeAttribute("cliente");
 
-           
-            response.sendRedirect("venta.jsp");
-
-            System.out.println("hasta aca funciono");
+            System.out.println("Factura generada exitosamente.");
         } else {
             response.getWriter().println("Error al registrar la factura.");
         }
@@ -224,7 +233,25 @@ public class NuevaVentaServlet extends HttpServlet {
 
 
 
-    private void generarPDF(HttpServletResponse response, List<ProductosVenta> carritoVentas, Clientes cliente, long totalFactura, String metodoPago, String nombreUsuario) throws IOException, DocumentException {
+
+        private void generarPDF(HttpServletResponse response, List<ProductosVenta> carritoVentas, Clientes cliente, long totalFactura, String metodoPago, String nombreUsuario) throws IOException, DocumentException {
+        // Validar cliente
+        if (cliente == null) {
+            cliente = new Clientes();
+            cliente.setId(0); // Cliente genérico
+            cliente.setNombre("Sin Cliente");
+            cliente.setDocumento("N/A");
+            cliente.setTipoDocumento("N/A");
+            cliente.setTelefono("N/A");
+            cliente.setDireccion("N/A");
+            cliente.setEmail("N/A");
+        }
+
+        // Validar carritoVentas
+        if (carritoVentas == null) {
+            carritoVentas = new ArrayList<>();
+        }
+
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=\"factura_venta.pdf\"");
 
@@ -252,6 +279,7 @@ public class NuevaVentaServlet extends HttpServlet {
         table.addCell("Cantidad");
         table.addCell("Precio Unitario");
 
+        // Iterar por carritoVentas
         for (ProductosVenta producto : carritoVentas) {
             table.addCell(producto.getNombre());
             table.addCell(String.valueOf(producto.getCantidad()));
@@ -266,4 +294,5 @@ public class NuevaVentaServlet extends HttpServlet {
 
         document.close();
     }
+
 }

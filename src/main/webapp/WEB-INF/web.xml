@@ -12,6 +12,10 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>com.mycompany.easyshopproyecto.listeners.ContextListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>com.mycompany.easyshopproyecto.servlets.IndexServlet</servlet-class>
