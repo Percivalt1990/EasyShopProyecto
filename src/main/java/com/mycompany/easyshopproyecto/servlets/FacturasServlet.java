@@ -9,11 +9,12 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class FacturasServlet extends HttpServlet {
-    private FacturasDAO facturasDAO;
+    protected FacturasDAO facturasDAO;
 
     @Override
     public void init() throws ServletException {
@@ -33,7 +34,9 @@ public class FacturasServlet extends HttpServlet {
         Integer id = (idParam != null && !idParam.isEmpty()) ? Integer.parseInt(idParam) : null;
         Integer clienteId = (clienteIdParam != null && !clienteIdParam.isEmpty()) ? Integer.parseInt(clienteIdParam) : null;
         Integer usuarioId = (usuarioIdParam != null && !usuarioIdParam.isEmpty()) ? Integer.parseInt(usuarioIdParam) : null;
-        LocalDate fecha = (fechaParam != null && !fechaParam.isEmpty()) ? LocalDate.parse(fechaParam, DateTimeFormatter.ofPattern("yyyy-MM-dd")) : null;
+        LocalDate fecha = (fechaParam != null && !fechaParam.isEmpty())
+            ? LocalDate.parse(fechaParam, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            : null;
         Long total = (totalParam != null && !totalParam.isEmpty()) ? Long.parseLong(totalParam) : null;
 
         List<Facturas> facturas;
@@ -46,4 +49,6 @@ public class FacturasServlet extends HttpServlet {
         request.setAttribute("facturas", facturas);
         request.getRequestDispatcher("/facturas.jsp").forward(request, response);
     }
+
+
 }

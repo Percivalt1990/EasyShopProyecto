@@ -56,7 +56,7 @@ public class ClientesServlet extends HttpServlet {
         }
     }
 
-    private void crearCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void crearCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Clientes cliente = new Clientes(
             0,  // ID en 0 asignado en la base de datos pordefecto
             request.getParameter("nombre"),
@@ -76,7 +76,7 @@ public class ClientesServlet extends HttpServlet {
         }
     }
 
-    private void editarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void editarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Clientes cliente = new Clientes(
             id,
@@ -97,7 +97,7 @@ public class ClientesServlet extends HttpServlet {
         }
     }
 
-    private void eliminarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void eliminarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         boolean eliminado = clientesDAO.eliminarCliente(id);
 
@@ -109,7 +109,7 @@ public class ClientesServlet extends HttpServlet {
         }
     }
 
-    private void cargarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void cargarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Clientes cliente = clientesDAO.obtenerClientePorId(id);
 
@@ -122,7 +122,7 @@ public class ClientesServlet extends HttpServlet {
         }
     }
 
-    private void listarClientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void listarClientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Clientes> listaClientes = clientesDAO.listarClientes();
         request.setAttribute("clientesFiltrados", listaClientes);
         request.getRequestDispatcher("clientes.jsp").forward(request, response);

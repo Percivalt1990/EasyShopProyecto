@@ -1,4 +1,4 @@
-package com.mycompany.easyshopproyecto.dao;
+ package com.mycompany.easyshopproyecto.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

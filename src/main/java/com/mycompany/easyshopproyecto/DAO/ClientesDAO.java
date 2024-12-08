@@ -76,6 +76,10 @@ public class ClientesDAO {
 
     // Metodo para eliminar un cliente con su ID
     public boolean eliminarCliente(int id) {
+            if (id == 0) {
+            System.out.println("El cliente con ID 0 no puede ser eliminado.");
+            return false; // Proteger el cliente con ID 0
+        }
         String sql = "DELETE FROM clientes WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);

@@ -76,8 +76,6 @@ public class NuevaCompraDAO {
 
 
 
-
-
     public List<ProductosCompra> buscarProductosCompra(String search) {
         List<ProductosCompra> productos = new ArrayList<>();
         String query = "SELECT p.id, p.id_proveedor, p.nombre, p.precio, p.cantidad, pr.nombre AS nombre_proveedor " +
